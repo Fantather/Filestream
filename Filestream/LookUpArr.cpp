@@ -133,14 +133,12 @@ bool LookUpArr::load_from_file(const std::string& filename)
 	std::getline(ifs, dummy);	// Read \n
 
 	arr_.clear();
-	arr_.reserve(count);
-
+	arr_.reserve(count)
+		;
 	for (size_t i = 0; i < count; ++i) {
-		LookUp item;
-		if (!item.loadFromFile(ifs)) {
+		arr_.emplace_back();
+		if (!arr_.back().loadFromFile(ifs))
 			return false;
-		}
-		arr_.push_back(std::move(item));
 	}
 
 	return true;
